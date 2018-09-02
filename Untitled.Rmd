@@ -7,7 +7,7 @@ output:
 ---
 
 ### 1. Code for reading in the dataset and/or processing the data
-```{r first chunk, echo=TRUE}
+```{r echo=TRUE}
 folder_location <-"/Users/ethanschein/r-programming/RepData_PeerAssessment1"
 setwd(folder_location)
 unzip(zipfile = paste(folder_location, "/", 'activity.zip', sep = ""))
@@ -18,18 +18,18 @@ good_act <- activity_DS[complete.cases(activity_DS), ]
 
 ### 2. Histogram of the total number of steps taken each day
 
-```{r second chunk, echo=TRUE}
+```{r echo=TRUE}
 dta.sum <- aggregate(x = good_act['steps'], FUN = sum, by = list(Group.date = good_act$date))
 hist(dta.sum$steps, main = "Total Steps Taken Each Day", xlab = 'Steps')
 ```
 
 ### 3. Mean and median number of steps taken each day
-```{r mean and median, echo=TRUE}
+```{r echo=TRUE}
 print(round(mean(dta.sum$steps)))
 print(round(median(dta.sum$steps)))
 ```
 ### 4. Time series plot of the average number of steps taken per interval
-```{r interval, echo=TRUE}
+```{r echo=TRUE}
 
 interval <- aggregate(good_act['steps'], by = list(good_act$interval), FUN = mean)
 hist(interval$steps, main = "Average Number Steps Per Interval", xlab = "steps" )
@@ -37,12 +37,12 @@ hist(interval$steps, main = "Average Number Steps Per Interval", xlab = "steps" 
 
 ### 5. The 5-minute interval that, on average, contains the maximum number of steps
 
-```{r, echo=TRUE}
+```{r echo=TRUE}
 print(interval[which.max(interval$steps),]) 
 ```
 
 ###6. Code to describe and show a strategy for imputing missing data
-```{r impute, echo=TRUE}
+```{r echo=TRUE}
 for(i in 1:length(activity_DS$steps)){
         if(is.na(activity_DS$steps)[i]){
          row <- activity_DS[i,]
@@ -55,14 +55,14 @@ print(which(is.na(activity_DS$steps)))
 ```
 ### 7. Histogram of the total number of steps taken each day after missing values are imputed
 
-```{r imp, echo=TRUE}
+```{r echo=TRUE}
 dta.sum2 <- aggregate(x = activity_DS['steps'], FUN = sum, by = list(Group.date = activity_DS$date))
 hist(dta.sum2$steps, main = "Total Steps After Imputations", xlab = 'Steps')
 
 ```
 
 ### 8. Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
-```{r weekend_weekday, echo=TRUE}
+```{r echo=TRUE}
 
         index1 <- which(weekdays(activity_DS$date)=="Saturday" | weekdays(activity_DS$date)=='Sunday')
         DS_weekend <- activity_DS[index1,]
