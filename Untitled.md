@@ -95,8 +95,8 @@ hist(dta.sum2$steps, main = "Total Steps After Imputations", xlab = 'Steps')
         DS_weekend_agg <- aggregate(x = DS_weekend['steps'], FUN = mean, by = list(DS_weekend$interval))
 
         par(mfrow=c(1,2))
-        plot(x = DS_weekday_agg$Group.1, y = DS_weekday_agg$steps, type = "l")
-        plot(x = DS_weekend_agg$Group.1, y = DS_weekend_agg$steps, type = "l")
+        plot(x = DS_weekday_agg$Group.1, y = DS_weekday_agg$steps, type = "l", xlab = 'Interval', ylab = 'Weekday Steps')
+        plot(x = DS_weekend_agg$Group.1, y = DS_weekend_agg$steps, type = "l", xlab = 'Interval', ylab = 'Weekend Steps')
 ```
 
 ![](Untitled_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
